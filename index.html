@@ -147,15 +147,19 @@
           opacity: 0.6;
         }
       }
-      @keyframes pulse-dot {
+      @keyframes firework-pop {
         0%,
+        8%,
         100% {
-          opacity: 1;
-          transform: scale(1);
+          opacity: 0;
+          transform: scale(0.15);
         }
-        50% {
-          opacity: 0.5;
-          transform: scale(1.5);
+        14% {
+          opacity: 0.95;
+        }
+        34% {
+          opacity: 0;
+          transform: scale(1);
         }
       }
 
@@ -293,12 +297,6 @@
         background: rgba(255, 255, 255, 0.15);
       }
       @media (max-width: 600px) {
-        .group-num-box {
-          flex-direction: column;
-          gap: 10px;
-          align-items: stretch;
-          text-align: center;
-        }
         .data-table__row span:first-child {
           flex: 3;
           font-size: 13px;
@@ -317,10 +315,6 @@
           font-size: 12px;
           padding: 4px 10px;
         }
-        .announce {
-          font-size: 12px;
-          padding: 10px 14px;
-        }
         .hero h1 {
           font-size: 28px;
           letter-spacing: 0.04em;
@@ -328,6 +322,10 @@
         }
         .section__title {
           font-size: 24px;
+        }
+        .section__meta {
+          top: 2px;
+          font-size: 12px;
         }
         .decor--flute {
           width: 100px;
@@ -407,27 +405,274 @@
         letter-spacing: 0.06em;
       }
 
-      .announce {
+      .hot-news {
+        padding: 7px 22px;
+        margin-bottom: 36px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(255, 247, 251, 0.95)
+          );
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 18px;
+        box-shadow:
+          0 10px 32px rgba(26, 60, 68, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        animation: fadeInUp 0.7s ease 0.2s both;
+      }
+      .hot-news__list {
+        display: grid;
+        gap: 0;
+        list-style: none;
+      }
+      .hot-news__item {
+        position: relative;
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        align-items: start;
+        gap: 12px;
+        padding: 15px 4px;
+        overflow: hidden;
+        color: var(--text-main);
+      }
+      .hot-news__item + .hot-news__item {
+        border-top: 1px solid rgba(26, 60, 68, 0.09);
+      }
+      .hot-news__item--celebrate {
+        min-height: 74px;
+      }
+      .hot-news__pill {
+        position: relative;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 62px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-family:
+          "CangEr MingHei",
+          "Sarasa Gothic J",
+          sans-serif;
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+      }
+      .hot-news__pill--award {
+        color: #8b4d13;
+        background: linear-gradient(135deg, #ffe08a, #ffc1b8);
+        box-shadow: 0 2px 8px rgba(224, 150, 58, 0.2);
+      }
+      .hot-news__pill--building {
+        color: #286378;
+        background: #d7f2f6;
+      }
+      .hot-news__pill--raffle {
+        color: #954e27;
+        background: #ffe8d8;
+      }
+      .hot-news__text {
+        position: relative;
+        z-index: 2;
+        font-family:
+          "Sarasa Gothic J",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 14px;
+        line-height: 1.85;
+        letter-spacing: 0.045em;
+      }
+      .hot-news__copy {
+        position: relative;
+        z-index: 2;
+        min-width: 0;
+      }
+      .hot-news__subtext {
+        display: block;
+        margin-top: 2px;
+        color: #8b9194;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.6;
+        letter-spacing: 0.04em;
+      }
+      .featured-works {
+        margin-top: 24px;
+        text-align: center;
+      }
+      .featured-works__heading {
         display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px 14px;
+        margin-bottom: 14px;
+      }
+      .featured-works__title {
+        font-family:
+          "CangEr MingHei",
+          "Sarasa Gothic J",
+          sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.35;
+        color: #f06aaa;
+        letter-spacing: 0.09em;
+        -webkit-text-stroke: 3px #fff;
+        paint-order: stroke fill;
+        text-shadow:
+          0 3px 0 rgba(158, 61, 118, 0.28),
+          0 7px 18px rgba(111, 42, 86, 0.22);
+        transform: rotate(-1.2deg);
+      }
+      .featured-works__title::before {
+        content: "✦";
+        margin-right: 8px;
+        color: #ffd166;
+        -webkit-text-stroke: 2px #fff;
+      }
+      .featured-works__title::after {
+        content: "♡";
+        margin-left: 7px;
+        color: #ff8db8;
+        -webkit-text-stroke: 2px #fff;
+      }
+      .featured-works__badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        border-radius: 999px;
+        color: #fff;
+        background: linear-gradient(135deg, #ff8a65, #f06aaa);
+        box-shadow: 0 3px 10px rgba(138, 48, 83, 0.22);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        transform: rotate(2.5deg);
+      }
+      .featured-works__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         align-items: center;
         gap: 14px;
         padding: 14px 16px;
-        margin-bottom: 24px;
-        background: rgba(255, 255, 255, 0.12);
-        border-radius: 8px;
-        font-size: 14px;
-        letter-spacing: 0.05em;
-        color: rgba(255, 255, 255, 0.85);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        animation: fadeInUp 0.7s ease 0.2s both;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 5px 18px rgba(26, 60, 68, 0.12);
       }
-      .announce__dot {
-        width: 8px;
-        height: 8px;
+      .featured-works__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        min-height: 58px;
+        text-decoration: none;
+        transition:
+          transform 0.25s ease,
+          opacity 0.25s ease;
+      }
+      .featured-works__link:hover {
+        transform: translateY(-2px);
+        opacity: 0.82;
+      }
+      .featured-works__logo {
+        display: block;
+        width: 100%;
+        height: 58px;
+        object-fit: contain;
+      }
+      .featured-works__logo--yagakimi {
+        height: 48px;
+      }
+      .hot-news__item--celebrate .hot-news__text {
+        color: #8c3853;
+        font-weight: 600;
+      }
+      .hot-news__firework {
+        position: absolute;
+        z-index: 1;
+        width: 4px;
+        height: 4px;
         border-radius: 50%;
-        background: #a03040;
-        flex-shrink: 0;
-        animation: pulse-dot 2s ease-in-out infinite;
+        pointer-events: none;
+        animation: firework-pop 3.2s ease-out infinite;
+      }
+      .hot-news__firework--one {
+        top: 50%;
+        right: 58px;
+        background: #ff8a65;
+        box-shadow:
+          0 -17px #ffbd59,
+          12px -12px #e78dbb,
+          17px 0 #ff8a65,
+          12px 12px #69c6d9,
+          0 17px #b693d1,
+          -12px 12px #ffbd59,
+          -17px 0 #e78dbb,
+          -12px -12px #69c6d9;
+      }
+      .hot-news__firework--two {
+        top: 34%;
+        right: 116px;
+        background: #e78dbb;
+        box-shadow:
+          0 -12px #69c6d9,
+          9px -9px #ffbd59,
+          12px 0 #e78dbb,
+          9px 9px #ff8a65,
+          0 12px #69c6d9,
+          -9px 9px #b693d1,
+          -12px 0 #ffbd59,
+          -9px -9px #ff8a65;
+        animation-delay: 1.15s;
+      }
+      @media (max-width: 600px) {
+        .hot-news {
+          padding: 6px 16px;
+        }
+        .hot-news__item {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .hot-news__pill {
+          justify-self: start;
+        }
+        .featured-works__title {
+          font-size: 25px;
+          -webkit-text-stroke-width: 2px;
+        }
+        .featured-works__grid {
+          grid-template-columns: 1fr;
+          gap: 7px;
+          padding: 12px;
+        }
+        .featured-works__link,
+        .featured-works__logo {
+          min-height: 50px;
+          height: 50px;
+        }
+        .featured-works__logo--yagakimi {
+          height: 44px;
+        }
+        .hot-news__firework--one {
+          right: 34px;
+        }
+        .hot-news__firework--two {
+          right: 80px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hot-news__firework {
+          animation: none;
+        }
+        .hot-news__firework {
+          opacity: 0.45;
+          transform: scale(0.75);
+        }
       }
 
       .section {
@@ -442,8 +687,23 @@
       .section__header {
         display: flex;
         align-items: baseline;
+        flex-wrap: wrap;
         gap: 12px;
         margin-bottom: 18px;
+      }
+      .section__meta {
+        position: relative;
+        top: 3px;
+        color: rgba(255, 255, 255, 0.5);
+        font-family:
+          "Sarasa Gothic J",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.05em;
       }
       .section-divider {
         height: 1px;
@@ -534,6 +794,18 @@
         color: var(--text-main);
         margin-bottom: 4px;
       }
+      .qq-join {
+        width: fit-content;
+        margin-left: auto;
+        padding: 7px 24px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .qq-join__icon {
+        margin-right: 7px;
+        color: #12b7f5;
+        font-size: 20px;
+        vertical-align: -1px;
+      }
       .section-card__sub {
         font-size: 13px;
         color: var(--text-muted);
@@ -587,11 +859,6 @@
         background: #5fa8b4;
         box-shadow: 0 2px 8px rgba(95, 168, 180, 0.3);
       }
-      .tag--5 {
-        background: #c47a9e;
-        box-shadow: 0 2px 8px rgba(196, 122, 158, 0.3);
-      }
-
       .perf-table {
         margin-top: 16px;
       }
@@ -760,97 +1027,122 @@
         <h1>北宇治迫伞部</h1>
         <p class="hero__tagline">河豚发电 · 图片交流 · 音乐鉴赏 · 乐谱制作</p>
       </div>
-      <div class="announce">
-        <span class="announce__dot"></span
-        >群内正在抽奖魔裁同会社的新作《魔法少女ノ因習村》，欢迎大家入群参与！如果进来的人多可能考虑增加数量（？）
-      </div>
+
+      <section class="hot-news" aria-label="热点消息">
+        <ul class="hot-news__list">
+          <li class="hot-news__item hot-news__item--celebrate">
+            <span
+              class="hot-news__firework hot-news__firework--one"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="hot-news__firework hot-news__firework--two"
+              aria-hidden="true"
+            ></span>
+            <span class="hot-news__pill hot-news__pill--award">菲奖</span>
+            <div class="hot-news__copy">
+              <span class="hot-news__text"
+                >恭喜邓煜老师因对希尔伯特第六问题的贡献获得菲尔兹奖！</span
+              >
+              <span class="hot-news__subtext">庆祝百合圈菲奖破零！</span>
+            </div>
+          </li>
+          <li class="hot-news__item">
+            <span class="hot-news__pill hot-news__pill--building">施工中</span>
+            <span class="hot-news__text">辉夜姬机器人绝赞施工中</span>
+          </li>
+          <li class="hot-news__item">
+            <span class="hot-news__pill hot-news__pill--raffle">抽奖中</span>
+            <span class="hot-news__text"
+              >群内正在抽奖魔裁同会社的新作《魔法少女ノ因習村》，欢迎大家入群参与！如果进来的人多可能考虑增加数量（？）</span
+            >
+          </li>
+        </ul>
+      </section>
 
       <div class="section" id="qq">
-        <div class="section__header"><h2 class="section__title">QQ群</h2></div>
+        <div class="section__header">
+          <h2 class="section__title">QQ群</h2>
+          <span class="section__meta">群号 1041865199</span>
+        </div>
         <p class="section__intro">
           欢迎加入北宇治迫伞部QQ群，这里是河豚们聊天吹水的大本营。群内汇聚了众多同好，无论你是来分享百合图片、交流音乐、寻找乐谱、直播看番，还是单纯想找个地方摸鱼，这里都很适合你。
         </p>
         <a
-          href="https://qm.qq.com/q/vZze1LKdVu"
-          class="section-card"
+          href="https://qm.qq.com/q/UieQ53feQo"
+          class="section-card qq-join"
           target="_blank"
           rel="noopener noreferrer"
-          ><div class="section-card__title">
-            加入QQ群 <span class="section-card__icon">↗</span>
-          </div>
-          <div class="section-card__sub">https://qm.qq.com/q/vZze1LKdVu</div></a
         >
-        <div
-          class="group-num-box"
-          style="
-            background: #fff;
-            border-radius: 8px;
-            padding: 14px 20px;
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 8px rgba(26, 60, 68, 0.1);
-          "
-        >
-          <span style="display: flex; align-items: center; gap: 8px"
-            ><i
-              class="fa-brands fa-qq"
-              style="font-size: 20px; color: #12b7f5"
+          <div class="section-card__title">
+            <i
+              class="fa-brands fa-qq qq-join__icon"
+              aria-hidden="true"
             ></i
-            ><span
-              style="
-                font-size: 13px;
-                color: var(--text-muted);
-                letter-spacing: 0.04em;
-              "
-              >群号</span
-            ><strong
-              style="
-                font-size: 17px;
-                letter-spacing: 0.06em;
-                color: var(--text-main);
-              "
-              >1041865199</strong
-            ></span
-          >
-          <button
-            class="copy-btn"
-            onclick="
-              navigator.clipboard.writeText('1041865199').then(
-                function () {
-                  this.textContent = '✓ 已复制';
-                  var t = this;
-                  setTimeout(function () {
-                    t.textContent = '点击复制群号';
-                  }, 2000);
-                }.bind(this),
-              )
-            "
-            style="
-              cursor: pointer;
-              background: var(--accent);
-              color: #fff;
-              border: none;
-              padding: 6px 16px;
-              border-radius: 4px;
-              font-size: 13px;
-              letter-spacing: 0.04em;
-            "
-          >
-            点击复制群号
-          </button>
-        </div>
+            >加入QQ群 <span class="section-card__icon">↗</span>
+          </div>
+        </a>
         <p class="section__intro" style="margin-top: 18px">
           群友们口味相近，经常出没于以下作品的讨论当中——
+        </p>
+        <div class="featured-works">
+          <div class="featured-works__heading">
+            <h3 class="featured-works__title">菲奖得主推荐作品</h3>
+            <span class="featured-works__badge">本群热议中</span>
+          </div>
+          <div class="featured-works__grid">
+            <a
+              class="featured-works__link"
+              href="https://yagakimi.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="前往《终将成为你》官方网站"
+            >
+              <img
+                class="featured-works__logo featured-works__logo--yagakimi"
+                src="images/recommend-yagakimi.png"
+                alt="《终将成为你》标题艺术字"
+              />
+            </a>
+            <a
+              class="featured-works__link"
+              href="https://manosaba.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="前往《魔法少女的魔女裁判》官方网站"
+            >
+              <img
+                class="featured-works__logo"
+                src="images/recommend-manosaba.jpg"
+                alt="《魔法少女的魔女裁判》标题艺术字"
+              />
+            </a>
+            <a
+              class="featured-works__link"
+              href="https://anime.bang-dream.com/avemujica/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="前往《Ave Mujica》官方网站"
+            >
+              <img
+                class="featured-works__logo"
+                src="images/recommend-ave-mujica.jpg"
+                alt="《Ave Mujica》标题艺术字"
+              />
+            </a>
+          </div>
+        </div>
+        <p
+          class="section__intro"
+          style="margin-top: 18px; margin-bottom: 10px"
+        >
+          还有：
         </p>
         <div class="tag-cloud">
           <span class="tag tag--1">利兹与青鸟</span
           ><span class="tag tag--2">吹响吧！上低音号</span
           ><span class="tag tag--3">少女歌剧剧场版</span
-          ><span class="tag tag--4">上伊那牡丹</span
-          ><span class="tag tag--5">魔法少女的魔女审判</span
-          ><span class="tag tag--3">超时空辉夜姬</span>
+          ><span class="tag tag--4">上伊那牡丹</span>
         </div>
       </div>
 
