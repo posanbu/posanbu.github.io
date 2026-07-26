@@ -501,8 +501,20 @@
         letter-spacing: 0.04em;
       }
       .featured-works {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 150px;
+        align-items: center;
+        gap: 64px;
         margin-top: 24px;
         text-align: center;
+      }
+      .featured-works__illustration {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 14px;
+        box-shadow: 0 5px 18px rgba(26, 60, 68, 0.16);
       }
       .featured-works__heading {
         display: flex;
@@ -644,6 +656,13 @@
         .featured-works__title {
           font-size: 25px;
           -webkit-text-stroke-width: 2px;
+        }
+        .featured-works {
+          grid-template-columns: 1fr;
+        }
+        .featured-works__illustration {
+          width: min(170px, 55vw);
+          margin: 0 auto;
         }
         .featured-works__grid {
           grid-template-columns: 1fr;
@@ -859,6 +878,14 @@
         background: #5fa8b4;
         box-shadow: 0 2px 8px rgba(95, 168, 180, 0.3);
       }
+      .tag--5 {
+        background: #55b8e8;
+        box-shadow: 0 2px 8px rgba(85, 184, 232, 0.3);
+      }
+      .tag--6 {
+        background: #c24f83;
+        box-shadow: 0 2px 8px rgba(194, 79, 131, 0.3);
+      }
       .perf-table {
         margin-top: 16px;
       }
@@ -1049,7 +1076,7 @@
           </li>
           <li class="hot-news__item">
             <span class="hot-news__pill hot-news__pill--building">施工中</span>
-            <span class="hot-news__text">かぐや姫は今、見事に命を吹き込まれてます</span>
+            <span class="hot-news__text">辉夜姬机器人绝赞施工中</span>
           </li>
           <li class="hot-news__item">
             <span class="hot-news__pill hot-news__pill--raffle">抽奖中</span>
@@ -1086,51 +1113,58 @@
           群友们口味相近，经常出没于以下作品的讨论当中——
         </p>
         <div class="featured-works">
-          <div class="featured-works__heading">
-            <h3 class="featured-works__title">菲奖得主推荐作品</h3>
-            <span class="featured-works__badge">本群热议中</span>
+          <div class="featured-works__content">
+            <div class="featured-works__heading">
+              <h3 class="featured-works__title">菲奖得主推荐作品</h3>
+              <span class="featured-works__badge">本群热议中</span>
+            </div>
+            <div class="featured-works__grid">
+              <a
+                class="featured-works__link"
+                href="https://yagakimi.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="前往《终将成为你》官方网站"
+              >
+                <img
+                  class="featured-works__logo featured-works__logo--yagakimi"
+                  src="images/recommend-yagakimi.png"
+                  alt="《终将成为你》标题艺术字"
+                />
+              </a>
+              <a
+                class="featured-works__link"
+                href="https://manosaba.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="前往《魔法少女的魔女裁判》官方网站"
+              >
+                <img
+                  class="featured-works__logo"
+                  src="images/recommend-manosaba.jpg"
+                  alt="《魔法少女的魔女裁判》标题艺术字"
+                />
+              </a>
+              <a
+                class="featured-works__link"
+                href="https://anime.bang-dream.com/avemujica/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="前往《Ave Mujica》官方网站"
+              >
+                <img
+                  class="featured-works__logo"
+                  src="images/recommend-ave-mujica.jpg"
+                  alt="《Ave Mujica》标题艺术字"
+                />
+              </a>
+            </div>
           </div>
-          <div class="featured-works__grid">
-            <a
-              class="featured-works__link"
-              href="https://yagakimi.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="前往《终将成为你》官方网站"
-            >
-              <img
-                class="featured-works__logo featured-works__logo--yagakimi"
-                src="images/recommend-yagakimi.png"
-                alt="《终将成为你》标题艺术字"
-              />
-            </a>
-            <a
-              class="featured-works__link"
-              href="https://manosaba.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="前往《魔法少女的魔女裁判》官方网站"
-            >
-              <img
-                class="featured-works__logo"
-                src="images/recommend-manosaba.jpg"
-                alt="《魔法少女的魔女裁判》标题艺术字"
-              />
-            </a>
-            <a
-              class="featured-works__link"
-              href="https://anime.bang-dream.com/avemujica/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="前往《Ave Mujica》官方网站"
-            >
-              <img
-                class="featured-works__logo"
-                src="images/recommend-ave-mujica.jpg"
-                alt="《Ave Mujica》标题艺术字"
-              />
-            </a>
-          </div>
+          <img
+            class="featured-works__illustration"
+            src="images/hero-thinking-girl.png"
+            alt="思考中的长发女孩插画"
+          />
         </div>
         <p
           class="section__intro"
@@ -1142,8 +1176,8 @@
           <span class="tag tag--1">利兹与青鸟</span
           ><span class="tag tag--2">吹响吧！上低音号</span
           ><span class="tag tag--3">少女歌剧剧场版</span
-          ><span class="tag tag--4">上伊那牡丹</span
-          ><span class="tag tag--3">超时空辉夜姬</span
+          ><span class="tag tag--6">上伊那牡丹</span
+          ><span class="tag tag--5">超时空辉夜姬</span>
         </div>
       </div>
 
